@@ -27,6 +27,13 @@ public class Path {
     public void setDistance(int distance) {
         this.distance = distance;
     }
+
+    public Path() {
+    }
+
+    public Path(int length) {
+        this.length = length;
+    }
     
     
     
