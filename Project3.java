@@ -71,7 +71,7 @@ public class Dijkstra {
     public static void print(int Matrix[][], int[] preD) {
         for (int i = 0; i < Matrix.length; i++) {
             int j;
-            System.out.print("THE path is :" + i);
+            System.out.print("THE shortest path from :"+i);
             j = i;
 
             do {
