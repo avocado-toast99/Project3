@@ -1,19 +1,21 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+Group Members:
+
+
+Algorithms and Data Structures
+Section CH 
+Project 3 - Dijkstra's Algorithm 
+
+
+
+
  */
 package dijkstra;
 
-/**
- *
- * @author Bashoo
- */
 public class Dijkstra {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
 
         // Infinity variable equals 10000.
@@ -45,6 +47,26 @@ public class Dijkstra {
     }
 
     public static void Dijkstra(int[][] Matrix, int min, int INF, int[] distance, int[] visited, int nextnode, int[] preD) {
+
+ /*
+        Dijkstra’s Algorithm
+        
+        
+        - Description:
+        
+        
+        - Parameters:
+        
+        
+        
+        - Output:
+        
+        
+
+        */
+    
+
+
         for (int i = 0; i < Matrix.length; i++) {
             min = INF;
             for (int j = 0; j < Matrix.length; j++) {
