@@ -92,6 +92,9 @@ public class Dijkstra {
     }
 
     public static void print(int Matrix[][], int[] preD, char[] nodes, int[] distance) {
+        
+        reverse(preD);
+            
         for (int i = 0; i < Matrix.length; i++) {
             int j;
             System.out.print("The shortest path from a to " + nodes[i] + ":   ");
@@ -121,7 +124,19 @@ public class Dijkstra {
             System.out.println();
         }
     }
-//    public static void reverse(int[] preD) {
+
+    public static void reverse(int[] preD) {
+        //method 1:
+//    for (int left = 0, right = preD.length - 1; left < right; left++, right--) {
+//        // swap the values at the left and right indices
+//        int temp = preD[left];
+//        preD[left]  = preD[right];
+//        preD[right] = temp;
+//    }
+
+        
+        
+       
 //        
 //        System.out.println("BEFORE");
 //        for (int i = 0; i < preD.length; i++) {
@@ -129,7 +144,7 @@ public class Dijkstra {
 //            
 //        }
 //        
-//        
+//        method 2: 
 //        for (int i = 0; i < preD.length/2; i++) {
 //            {
 //                int temp = preD[i];
@@ -144,4 +159,5 @@ public class Dijkstra {
 //            
 //        }
 //    }
+    }
 }
