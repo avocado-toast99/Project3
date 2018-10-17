@@ -1,35 +1,28 @@
 /*
-
  Group Members:
-
-
  Algorithms and Data Structures
  Section CH 
  Project 3 - Dijkstra's Algorithm 
-
-
-
-
  */
 package dijkstra;
 
 public class Vertex {
 
-    private String label;
+    private char label;
     private Vertex next;
 
     public Vertex() {
     }
 
-    public Vertex(String label) {
+    public Vertex(char label) {
         this.label = label;
     }
 
-    public String getLabel() {
+    public char getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public void setLabel(char label) {
         this.label = label;
     }
 
@@ -41,7 +34,7 @@ public class Vertex {
         this.next = next;
     }
 
-    public Vertex(String label, Vertex next) {
+    public Vertex(char label, Vertex next) {
         this.label = label;
         this.next = next;
     }
