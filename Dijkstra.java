@@ -99,7 +99,7 @@ public class Dijkstra {
             int j;
             System.out.print("The shortest path from a to " + nodes[i] + ":   ");
 
-            j = i;
+            j = i;/
 
 
 
