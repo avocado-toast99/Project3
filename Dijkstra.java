@@ -2,7 +2,7 @@
  Group Members:
  Algorithms and Data Structures
  Section CH 
- Project 3 - Dijkstra's Algorithm 
+ Project 3 - Part 1 - Dijkstra's Algorithm 
  */
 package dijkstra;
 
@@ -11,7 +11,8 @@ public class Dijkstra {
     public static void main(String[] args) {
 
         // Infinity variable equals 10000.
-        final int INF = 10000;
+        int INF = 10000;
+
         // declare and initialize matrix
         int Matrix[][] = {{INF, 4, 3, INF, INF, INF},
         {4, INF, 2, 13, 10, INF},
@@ -20,20 +21,42 @@ public class Dijkstra {
         {INF, 10, INF, 5, INF, 3},
         {INF, INF, INF, 1, 3, INF}};
 
-        // the row of matrix
-        int[] distance = new int[6];
-        distance = Matrix[0];
-        distance[0] = 0;
+        int source = 0;
 
         // Call the Dijkstra method,
-        char[][] paths = Dijkstra(Matrix, INF, distance);
+        Object[] output = Dijkstra(Matrix, INF, source);
+
+        char[][] paths = (char[][]) output[0];
+        int[] distance = (int[]) output[1];
 
         // Matrix after running Dijkstra algorithm:
-        print(Matrix, distance, paths);
+        print(Matrix, distance, paths, source);
 
+//        System.out.println("SAMPLE MATRIX 2:");
+//        INF = 100;
+//
+//        int Matrix2[][] = new int[][]{{100, 4, 100, 100, 100, 100, 100, 8, 100},
+//        {4, 100, 8, 100, 100, 100, 100, 11, 100},
+//        {100, 8, 100, 7, 100, 4, 100, 100, 2},
+//        {100, 100, 7, 100, 9, 14, 100, 100, 100},
+//        {100, 100, 100, 9, 100, 1100, 100, 100, 100},
+//        {100, 100, 4, 14, 10, 100, 2, 100, 100},
+//        {100, 100, 100, 100, 100, 2, 100, 1, 6},
+//        {8, 11, 100, 100, 100, 100, 1, 100, 7},
+//        {100, 100, 2, 100, 100, 100, 6, 7, 100}
+//        };
+//
+//        // Call the Dijkstra method,
+//        Object[] output2 = Dijkstra(Matrix2, INF, source);
+//
+//        char[][] paths2 = (char[][]) output2[0];
+//        int[] distance2 = (int[]) output2[1];
+//
+//        // Matrix after running Dijkstra algorithm:
+//        print(Matrix, distance2, paths2, source);
     }
 
-    public static char[][] Dijkstra(int[][] Matrix, int INF, int[] distance) {
+    public static Object[] Dijkstra(int[][] Matrix, int INF, int source) {
 
         /*
          Dijkstra’s Algorithm
@@ -50,21 +73,24 @@ public class Dijkstra {
         
         
          */
+        int[] distance = new int[Matrix.length];
+        distance = Matrix[0];
+        distance[0] = 0;
+
         char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
         char[] nodes = new char[Matrix.length];
         for (int i = 0; i < Matrix.length; i++) {
             nodes[i] = alphabet[i];
-
         }
 
         int min = 0;
         int nextnode = 0;
 
-        int[] visited = new int[6];
-        int[] preD = new int[6];
+        int[] visited = new int[Matrix.length];
+        int[] preD = new int[Matrix.length];
 
-        visited[0] = 1;
+        visited[source] = 1;
 
         for (int i = 0; i < Matrix.length; i++) {
 
@@ -90,29 +116,28 @@ public class Dijkstra {
 
                     }
 
-                }// if-
+                }// if
             } // for
 
-        } //main for
-
-        char[][] paths = new char[Matrix.length][Matrix.length];
+        }
 
         //reverse:
-        for (int k = 0; k < 6; k++) {
-            for (int l = 0; l < 6; l++) {
-                paths[k][l] = 'x';
+        char[][] paths = new char[Matrix.length][Matrix[0].length];
+        for (int k = 0; k < Matrix.length; k++) {
+            for (int l = 0; l < Matrix[k].length; l++) {
+                paths[k][l] = 'X';
             }
         }
 
-        for (int x = 0; x < 6; x++) {
-            paths[0][x] = 'N';
+        for (int columns = 0; columns < Matrix[0].length; columns++) {
+            paths[source][columns] = 'N';
         }
-        paths[0][5] = 'a';
+        paths[source][paths.length - 1] = 'a';
 
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < Matrix[0].length; i++) {
 
-            paths[i][0] = 'a';
-            paths[i][5] = nodes[i];
+            paths[i][source] = 'a';
+            paths[i][paths.length - 1] = nodes[i];
             int j;
 
             j = i;
@@ -121,9 +146,12 @@ public class Dijkstra {
 
                 j = preD[j];
 
-                for (int ddd = 4; ddd > 0; ddd--) {
-                    if (paths[i][ddd] == 'x' && nodes[j] != 'a') {
-                        paths[i][ddd] = nodes[j];
+                // int columns = Matrix.length - 2: 
+                // we subtract 2 because 2 spots are reserved 
+                // for the source and destination nodes
+                for (int columns = Matrix.length - 2; columns > 0; columns--) {
+                    if (paths[i][columns] == 'X' && nodes[j] != nodes[source]) {
+                        paths[i][columns] = nodes[j];
                         break;
                     }
                 }
@@ -134,23 +162,28 @@ public class Dijkstra {
 
         System.out.println();
 
-        return paths;
+        return new Object[]{paths, distance};
 
     }// meth
 
-// 
-    public static void print(int Matrix[][], int[] distance, char[][] paths) {
 
-        for (int i = 0; i < 6; i++) {
-            System.out.print("The shortest path from a to " + paths[i][5] + ":   ");
+    public static void print(int Matrix[][], int[] distance, char[][] paths, int source) {
 
-            if (distance[i] == 0) {
+        char sourceNode = paths[source][paths[source].length - 1];
+
+        for (int i = 0; i < Matrix.length; i++) {
+
+            char destination = paths[i][paths[i].length - 1];
+
+            System.out.print("The shortest path from " + sourceNode + " to " + destination + ":   ");
+
+            if (i == source) {
                 System.out.print("NULL\n");
 
             } else {
-                for (int j = 0; j < 6; j++) {
-                    if (paths[i][j] != 'x') {
-                        if (j == 5) {
+                for (int j = 0; j < paths.length; j++) {
+                    if (paths[i][j] != 'X') {
+                        if (j == paths.length - 1) {
                             System.out.print(paths[i][j]);
                         } else {
                             System.out.print(paths[i][j] + "->");
@@ -165,6 +198,6 @@ public class Dijkstra {
         }
 
         System.out.println();
-    } // for-main
+    }
 
-} // print
+}
