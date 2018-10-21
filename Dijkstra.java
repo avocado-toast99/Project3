@@ -132,11 +132,11 @@ public class Dijkstra {
         for (int columns = 0; columns < Matrix[0].length; columns++) {
             paths[source][columns] = 'N';
         }
-        paths[source][paths.length - 1] = 'a';
+        paths[source][paths.length - 1] = nodes[source];
 
         for (int i = 1; i < Matrix[0].length; i++) {
 
-            paths[i][source] = 'a';
+            paths[i][source] = nodes[source];
             paths[i][paths.length - 1] = nodes[i];
             int j;
 
