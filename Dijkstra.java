@@ -32,28 +32,28 @@ public class Dijkstra {
         // Matrix after running Dijkstra algorithm:
         print(Matrix, distance, paths, source);
 
-//        System.out.println("SAMPLE MATRIX 2:");
-//        INF = 100;
-//
-//        int Matrix2[][] = new int[][]{{100, 4, 100, 100, 100, 100, 100, 8, 100},
-//        {4, 100, 8, 100, 100, 100, 100, 11, 100},
-//        {100, 8, 100, 7, 100, 4, 100, 100, 2},
-//        {100, 100, 7, 100, 9, 14, 100, 100, 100},
-//        {100, 100, 100, 9, 100, 1100, 100, 100, 100},
-//        {100, 100, 4, 14, 10, 100, 2, 100, 100},
-//        {100, 100, 100, 100, 100, 2, 100, 1, 6},
-//        {8, 11, 100, 100, 100, 100, 1, 100, 7},
-//        {100, 100, 2, 100, 100, 100, 6, 7, 100}
-//        };
-//
-//        // Call the Dijkstra method,
-//        Object[] output2 = Dijkstra(Matrix2, INF, source);
-//
-//        char[][] paths2 = (char[][]) output2[0];
-//        int[] distance2 = (int[]) output2[1];
-//
-//        // Matrix after running Dijkstra algorithm:
-//        print(Matrix, distance2, paths2, source);
+        System.out.println("SAMPLE MATRIX 2:");
+        INF = 100;
+
+        int Matrix2[][] = new int[][]{{100, 4, 100, 100, 100, 100, 100, 8, 100},
+        {4, 100, 8, 100, 100, 100, 100, 11, 100},
+        {100, 8, 100, 7, 100, 4, 100, 100, 2},
+        {100, 100, 7, 100, 9, 14, 100, 100, 100},
+        {100, 100, 100, 9, 100, 1100, 100, 100, 100},
+        {100, 100, 4, 14, 10, 100, 2, 100, 100},
+        {100, 100, 100, 100, 100, 2, 100, 1, 6},
+        {8, 11, 100, 100, 100, 100, 1, 100, 7},
+        {100, 100, 2, 100, 100, 100, 6, 7, 100}
+        };
+
+        // Call the Dijkstra method,
+        Object[] output2 = Dijkstra(Matrix2, INF, source);
+
+        char[][] paths2 = (char[][]) output2[0];
+        int[] distance2 = (int[]) output2[1];
+
+        // Matrix after running Dijkstra algorithm:
+        print(Matrix2, distance2, paths2, source);
     }
 
     public static Object[] Dijkstra(int[][] Matrix, int INF, int source) {
