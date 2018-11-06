@@ -20,7 +20,8 @@ public class Dijkstra {
         {INF, 13, 12, INF, 5, 1},
         {INF, 10, INF, 5, INF, 3},
         {INF, INF, INF, 1, 3, INF}};
-
+        
+        // initillize the source
         int source = 0;
 
         // Call the Dijkstra method,
@@ -32,28 +33,6 @@ public class Dijkstra {
         // Matrix after running Dijkstra algorithm:
         print(Matrix, distance, paths, source);
 
-        System.out.println("SAMPLE MATRIX 2:");
-        INF = 100;
-
-        int Matrix2[][] = new int[][]{{100, 4, 100, 100, 100, 100, 100, 8, 100},
-        {4, 100, 8, 100, 100, 100, 100, 11, 100},
-        {100, 8, 100, 7, 100, 4, 100, 100, 2},
-        {100, 100, 7, 100, 9, 14, 100, 100, 100},
-        {100, 100, 100, 9, 100, 1100, 100, 100, 100},
-        {100, 100, 4, 14, 10, 100, 2, 100, 100},
-        {100, 100, 100, 100, 100, 2, 100, 1, 6},
-        {8, 11, 100, 100, 100, 100, 1, 100, 7},
-        {100, 100, 2, 100, 100, 100, 6, 7, 100}
-        };
-
-        // Call the Dijkstra method,
-        Object[] output2 = Dijkstra(Matrix2, INF, source);
-
-        char[][] paths2 = (char[][]) output2[0];
-        int[] distance2 = (int[]) output2[1];
-
-        // Matrix after running Dijkstra algorithm:
-        print(Matrix2, distance2, paths2, source);
     }
 
     public static Object[] Dijkstra(int[][] Matrix, int INF, int source) {
@@ -76,20 +55,25 @@ public class Dijkstra {
         int[] distance = new int[Matrix.length];
         distance = Matrix[0];
         distance[0] = 0;
-
+        
+        // just array for the whole letters
         char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-
-        char[] nodes = new char[Matrix.length];
+        
+        // array for letters with the range of the original matrix
+        char[] letters = new char[Matrix.length];
+        // initilize letter array
         for (int i = 0; i < Matrix.length; i++) {
-            nodes[i] = alphabet[i];
+            letters[i] = alphabet[i];
         }
 
         int min = 0;
         int nextnode = 0;
-
+     
+        // array to indicate weather the vertex is visited or not
         int[] visited = new int[Matrix.length];
         int[] preD = new int[Matrix.length];
-
+     
+        // source is visited 
         visited[source] = 1;
 
         for (int i = 0; i < Matrix.length; i++) {
@@ -132,12 +116,12 @@ public class Dijkstra {
         for (int columns = 0; columns < Matrix[0].length; columns++) {
             paths[source][columns] = 'N';
         }
-        paths[source][paths.length - 1] = nodes[source];
+        paths[source][paths.length - 1] = letters[source];
 
         for (int i = 1; i < Matrix[0].length; i++) {
 
-            paths[i][source] = nodes[source];
-            paths[i][paths.length - 1] = nodes[i];
+            paths[i][source] = letters[source];
+            paths[i][paths.length - 1] = letters[i];
             int j;
 
             j = i;
@@ -148,10 +132,10 @@ public class Dijkstra {
 
                 // int columns = Matrix.length - 2: 
                 // we subtract 2 because 2 spots are reserved 
-                // for the source and destination nodes
+                // for the source and destination letters
                 for (int columns = Matrix.length - 2; columns > 0; columns--) {
-                    if (paths[i][columns] == 'X' && nodes[j] != nodes[source]) {
-                        paths[i][columns] = nodes[j];
+                    if (paths[i][columns] == 'X' && letters[j] != letters[source]) {
+                        paths[i][columns] = letters[j];
                         break;
                     }
                 }
