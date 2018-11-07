@@ -45,7 +45,7 @@ public class Dijkstra {
         
         
          - Parameters:
-        
+           the matrix (Graph) , the infinity variable (not accessable directly ),and the source
         
         
          - Output:
