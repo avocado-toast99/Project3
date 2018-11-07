@@ -42,12 +42,13 @@ public class Dijkstra {
         
         
          - Description:
-        
+            Dijkstra algorithm is from the Greedy algorithms that obtain the
+            best local solution, and it provide the single-source shortest path
+            to all destinations.
         
          - Parameters:
            the matrix (Graph) , the infinity variable (not accessable directly ),and the source
-        
-        
+       
          - Output:
         
         
