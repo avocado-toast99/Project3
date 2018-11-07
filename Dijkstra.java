@@ -52,6 +52,7 @@ public class Dijkstra {
         
         
          */
+        //array to stor the first row of the matrix
         int[] distance = new int[Matrix.length];
         distance = Matrix[0];
         distance[0] = 0;
@@ -65,7 +66,7 @@ public class Dijkstra {
         for (int i = 0; i < Matrix.length; i++) {
             letters[i] = alphabet[i];
         }
-
+        // initillize the min and nextnode variables
         int min = 0;
         int nextnode = 0;
      
@@ -75,10 +76,12 @@ public class Dijkstra {
      
         // source is visited 
         visited[source] = 1;
-
+        // start with the algorithm 
+        // iterate for the ith time: we iterate over the matrix i times 
         for (int i = 0; i < Matrix.length; i++) {
 
             min = INF;
+            // iterate over ith row
             for (int j = 0; j < Matrix.length; j++) {
 
                 if (min > distance[j] && visited[j] != 1) {
@@ -89,7 +92,7 @@ public class Dijkstra {
             }
 
             visited[nextnode] = 1;
-
+            // iterate over jth column
             for (int k = 0; k < Matrix.length; k++) {
 
                 if (visited[k] != 1) {
@@ -154,7 +157,7 @@ public class Dijkstra {
     public static void print(int Matrix[][], int[] distance, char[][] paths, int source) {
 
         char sourceNode = paths[source][paths[source].length - 1];
-
+        // iterate over rows
         for (int i = 0; i < Matrix.length; i++) {
 
             char destination = paths[i][paths[i].length - 1];
@@ -165,6 +168,7 @@ public class Dijkstra {
                 System.out.print("NULL\n");
 
             } else {
+                // iterate over columns
                 for (int j = 0; j < paths.length; j++) {
                     if (paths[i][j] != 'X') {
                         if (j == paths.length - 1) {
